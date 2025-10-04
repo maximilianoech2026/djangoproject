@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🌟 Bienvenido a mi Portafolio 🌟</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #00796b;
+            color: white;
+            padding: 50px 20px;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        form button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #004d40;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #b2dfdb;
+            margin: 10px auto;
+            padding: 15px;
+            width: 50%;
+            border-radius: 8px;
+            font-size: 1.2em;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        a:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌟 Bienvenido, {{ request.user.username }} 🌟</h1>
+        <!-- Formulario POST para cerrar sesión -->
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Cerrar sesión</button>
+        </form>
+    </header>
+
+    <p>Explora mis proyectos y conoce mi trabajo creativo.</p>
+    <ul>
+        {% for proyecto in proyectos %}
+            <li>
+                <strong>{{ proyecto.titulo }}</strong><br>
+                {{ proyecto.descripcion }}<br>
+                ⭐ {{ proyecto.estrellas }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'lista_proyectos' %}">Ver todos los proyectos</a>
+</body>
+</html>

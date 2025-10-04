@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🌟 Mis Proyectos Destacados 🌟</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: white;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        li:hover {
+            transform: scale(1.02);
+        }
+
+        li a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        li a:hover {
+            text-decoration: underline;
+        }
+
+        .fecha {
+            color: #777;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .descripcion {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌟 Mis Proyectos Destacados 🌟</h1>
+    </header>
+
+    <div class="container">
+        <ul>
+            {% for proyecto in proyectos %}
+                <li>
+                    <strong>{{ proyecto.titulo }}</strong>
+                    <div class="descripcion">{{ proyecto.descripcion }}</div>
+                    <div class="fecha">Fecha de creación: {{ proyecto.fecha_creacion }}</div>
+                    {% if proyecto.link %}
+                        <div><a href="{{ proyecto.link }}" target="_blank">Ver más</a></div>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>No hay proyectos aún.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
